@@ -1,6 +1,6 @@
 ---
 title: "Use the SAN field"
-docname: draft-rsalz-use-san-00
+docname: draft-rsalz-use-san-latest
 category: std
 
 ipr: trust200902
@@ -75,9 +75,9 @@ to do otherwise, applications SHOULD use the DNS-ID form.
 
 ## Representing Server Identity
 
-Severs either MUST NOT issue a CN-ID, or MUST use a form for the Common Name
-RDN that cannot be mistaken for an identifier. Not using Common Name is
-preferred.
+Servers MUST NOT request certificates that contain CN-ID in the subject. If
+the Common Name RDN must be present in the certificate, it MUST be in a
+form that cannot be mistaken for a CN-ID.
 
 ## Verifying Service Identity
 
