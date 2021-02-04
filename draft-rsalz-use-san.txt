@@ -9,7 +9,7 @@ Expires: 8 August 2021
 
 
                            Use the SAN field
-                         draft-rsalz-use-san.md
+                          draft-rsalz-use-san
 
 Abstract
 
