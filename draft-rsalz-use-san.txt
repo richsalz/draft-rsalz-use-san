@@ -116,9 +116,9 @@ Table of Contents
 
 3.2.  Representing Server Identity
 
-   Severs either MUST NOT issue a CN-ID, or MUST use a form for the
-   Common Name RDN that cannot be mistaken for an identifier.  Not using
-   Common Name is preferred.
+   Servers MUST NOT request certificates that contain CN-ID in the
+   subject.  If the Common Name RDN must be present in the certificate,
+   it MUST be in a form that cannot be mistaken for a CN-ID.
 
 3.3.  Verifying Service Identity
 
