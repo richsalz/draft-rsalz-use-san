@@ -4,8 +4,8 @@
 
 TBD Working Group                                                R. Salz
 Internet-Draft                                       Akamai Technologies
-Intended status: Standards Track                         2 February 2021
-Expires: 6 August 2021
+Intended status: Standards Track                         4 February 2021
+Expires: 8 August 2021
 
 
                            Use the SAN field
@@ -13,7 +13,11 @@ Expires: 6 August 2021
 
 Abstract
 
-   In the years since [RFC6125] was published,
+   In the decade since [RFC6125] was published, the subjectAltName
+   extension, as defined in [RFC5280] has become ubiquitous.  This
+   document updates [RFC6125] to specify that the fall-back techniques
+   of using commonName attribute to identify the service MUST NOT be
+   used.
 
 Discussion Venues
 
@@ -37,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 August 2021.
+   This Internet-Draft will expire on 8 August 2021.
 
 Copyright Notice
 
@@ -57,15 +61,24 @@ Table of Contents
 
    1.  Introduction
    2.  Conventions and Definitions
-   3.  Security Considerations
-   4.  IANA Considerations
-   5.  Normative References
+   3.  The New Rules
+     3.1.  Designing Application Protocols
+     3.2.  Representing Server Identity
+     3.3.  Verifying Service Identity
+   4.  Constraints on Wildcards
+   5.  Security Considerations
+   6.  IANA Considerations
+   7.  Normative References
    Acknowledgments
    Author's Address
 
 1.  Introduction
 
-   TODO Introduction
+   In the decade since [RFC6125] was published, the subjectAltName
+   extension, as defined in [RFC5280] has become ubiquitous.  This
+   document updates [RFC6125] to specify that the fall-back techniques
+   of using commonName attribute to identify the service MUST NOT be
+   used.
 
 2.  Conventions and Definitions
 
@@ -75,20 +88,88 @@ Table of Contents
    14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-3.  Security Considerations
+   The terminology from [RFC6125] is used here.  Specifically, the
+   following terms and brief definition (as a reminder):
 
-   TODO Security
+   *  CN-ID: the Common Name element from a Distingiushed Name.
 
-4.  IANA Considerations
+   *  DNS-ID, SRV-ID, URI-ID: different types of entries in a
+      subjectAltName extension.
+
+3.  The New Rules
+
+   The CN-ID MUST NOT be used.  The appropriate value in the
+   subjectAltName extension MUST be used to get the presented identity
+   of the server.
+
+   While not discussed in [RFC6125], this section also implicitly
+   prohibits the use of the Domain Component or emailAddress RDN's.
+
+   The following sections repeat the above rule in other forms, for the
+   purpose of updating [RFC6125].
+
+3.1.  Designing Application Protocols
+
+   Applications should determine which form of name they want to use,
+   and specify the appropriate subjectAltName extension.  Unless there
+   are reasons to do otherwise, applications SHOULD use the DNS-ID form.
+
+3.2.  Representing Server Identity
+
+   Severs either MUST NOT issue a CN-ID, or MUST use a form for the
+   Common Name RDN that cannot be mistaken for an identifier.  Not using
+   Common Name is preferred.
+
+3.3.  Verifying Service Identity
+
+   When constructing a list of reference identifiers, the client MUST
+   NOT include any CN-ID present in the certificate.  This means that
+   section 6.4.4 of [RFC6125] MUST be ignored.
+
+4.  Constraints on Wildcards
+
+   Wildcard certificates are discussed in section 7.2 of [RFC6125],
+   which says that the specifications "are not clear or consistent"
+   about where a wildcard can appear.
+
+   This documents specifies that a wildcard can appear
+
+   *  only as the left-most label; or
+
+   *  as the last character in a left-most label
+
+5.  Security Considerations
+
+   The CN-ID, domainComponent, and emailAddress RDN fields are
+   unstructured free text, and using them is dependant on ordering and
+   encoding concerns.  In addition, their evaluation when PKIX
+   nameConstraints are present is ambiguous.  This document removes
+   those fields from use, so a source of possible errors is removed.
+
+   Because of the ambiguity around wildcards, [RFC6125] mentions that it
+   is possible to have exploitable differences in behavior.  By
+   simplifying those practices to one rule, this source of errors should
+   be avoided.
+
+   All other security considerations of [RFC6125] and its dependant
+   documents are still relevant.
+
+6.  IANA Considerations
 
    This document has no IANA actions.
 
-5.  Normative References
+7.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
+
+   [RFC5280]  Cooper, D., Santesson, S., Farrell, S., Boeyen, S.,
+              Housley, R., and W. Polk, "Internet X.509 Public Key
+              Infrastructure Certificate and Certificate Revocation List
+              (CRL) Profile", RFC 5280, DOI 10.17487/RFC5280, May 2008,
+              <https://www.rfc-editor.org/info/rfc5280>.
 
    [RFC6125]  Saint-Andre, P. and J. Hodges, "Representation and
               Verification of Domain-Based Application Service Identity
