@@ -1,6 +1,6 @@
 ---
 title: "Use the SAN field"
-docname: draft-rsalz-use-san
+docname: draft-rsalz-use-san-00
 category: std
 
 ipr: trust200902
