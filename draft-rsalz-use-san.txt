@@ -4,12 +4,12 @@
 
 TBD Working Group                                                R. Salz
 Internet-Draft                                       Akamai Technologies
-Intended status: Standards Track                         4 February 2021
-Expires: 8 August 2021
+Intended status: Standards Track                         9 February 2021
+Expires: 13 August 2021
 
 
                            Use the SAN field
-                         draft-rsalz-use-san-00
+                       draft-rsalz-use-san-latest
 
 Abstract
 
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 August 2021.
+   This Internet-Draft will expire on 13 August 2021.
 
 Copyright Notice
 
