@@ -2,13 +2,14 @@
 
 
 
-TBD Working Group                                                R. Salz
+UTA                                                              R. Salz
 Internet-Draft                                       Akamai Technologies
-Intended status: Standards Track                         9 February 2021
-Expires: 13 August 2021
+Updates: 6125 (if approved)                                11 March 2021
+Intended status: Standards Track                                        
+Expires: 12 September 2021
 
 
-                           Use the SAN field
+   Update to Verifying TLS Server Identities with X.509 Certificates
                        draft-rsalz-use-san-latest
 
 Abstract
@@ -16,12 +17,19 @@ Abstract
    In the decade since [RFC6125] was published, the subjectAltName
    extension, as defined in [RFC5280] has become ubiquitous.  This
    document updates [RFC6125] to specify that the fall-back techniques
-   of using commonName attribute to identify the service MUST NOT be
-   used.
+   of using the commonName attribute to identify the service must not be
+   used.  This document also places some limitations on the use of
+   wildcards in subjectAltName fields.
+
+   Note that the original context, using X.509 certificates for server
+   identity with Transport Layer Security (TLS) has not changed.
 
 Discussion Venues
 
    This note is to be removed before publishing as an RFC.
+
+   This draft is discussed in the UTA working group,
+   https://datatracker.ietf.org/wg/uta/.
 
    Source for this draft and an issue tracker can be found at
    https://github.com/richsalz/draft-rsalz-use-san.
@@ -41,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 August 2021.
+   This Internet-Draft will expire on 12 September 2021.
 
 Copyright Notice
 
@@ -68,8 +76,9 @@ Table of Contents
    4.  Constraints on Wildcards
    5.  Security Considerations
    6.  IANA Considerations
-   7.  Normative References
-   Acknowledgments
+   7.  References
+     7.1.  Normative References
+     7.2.  Informative References
    Author's Address
 
 1.  Introduction
@@ -77,8 +86,14 @@ Table of Contents
    In the decade since [RFC6125] was published, the subjectAltName
    extension, as defined in [RFC5280] has become ubiquitous.  This
    document updates [RFC6125] to specify that the fall-back techniques
-   of using commonName attribute to identify the service MUST NOT be
-   used.
+   of using the commonName attribute to identify the service MUST NOT be
+   used.  This document also places some limitations on the use of
+   wildcards in subjectAltName fields.
+
+   Note that the original context, using X.509 certificates for server
+   identity with Transport Layer Security (TLS) has not changed.  In
+   addition to the examples in [RFC6125], the Baseline Requirements of
+   the CA/Browser Forum, [CABBR], might also be useflu.
 
 2.  Conventions and Definitions
 
@@ -102,7 +117,7 @@ Table of Contents
    subjectAltName extension MUST be used to get the presented identity
    of the server.
 
-   While not discussed in [RFC6125], this section also implicitly
+   While not discussed in [RFC6125] this section also implicitly
    prohibits the use of the Domain Component or emailAddress RDN's.
 
    The following sections repeat the above rule in other forms, for the
@@ -158,33 +173,38 @@ Table of Contents
 
    This document has no IANA actions.
 
-7.  Normative References
+7.  References
+
+7.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
-              <https://www.rfc-editor.org/info/rfc2119>.
+              <https://datatracker.ietf.org/doc/html/rfc2119>.
 
    [RFC5280]  Cooper, D., Santesson, S., Farrell, S., Boeyen, S.,
               Housley, R., and W. Polk, "Internet X.509 Public Key
               Infrastructure Certificate and Certificate Revocation List
               (CRL) Profile", RFC 5280, DOI 10.17487/RFC5280, May 2008,
-              <https://www.rfc-editor.org/info/rfc5280>.
+              <https://datatracker.ietf.org/doc/html/rfc5280>.
 
    [RFC6125]  Saint-Andre, P. and J. Hodges, "Representation and
               Verification of Domain-Based Application Service Identity
               within Internet Public Key Infrastructure Using X.509
               (PKIX) Certificates in the Context of Transport Layer
               Security (TLS)", RFC 6125, DOI 10.17487/RFC6125, March
-              2011, <https://www.rfc-editor.org/info/rfc6125>.
+              2011, <https://datatracker.ietf.org/doc/html/rfc6125>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
-              May 2017, <https://www.rfc-editor.org/info/rfc8174>.
+              May 2017, <https://datatracker.ietf.org/doc/html/rfc8174>.
 
-Acknowledgments
+7.2.  Informative References
 
-   TODO acknowledge.
+   [CABBR]    CA/Browser Forum, "Baseline Requirements for the Issuance
+              and Management of Publicly-Trusted Certificates", 2020,
+              <https://cabforum.org/wp-content/uploads/CA-Browser-Forum-
+              BR-1.7.3.pdf>.
 
 Author's Address
 
