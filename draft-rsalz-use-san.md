@@ -1,12 +1,13 @@
 ---
-title: "Use the SAN field"
+title: "Update to Verifying TLS Server Identities with X.509 Certificates"
 docname: draft-rsalz-use-san-latest
 category: std
 
 ipr: trust200902
 area: Security
-workgroup: TBD Working Group
+workgroup: UTA
 keyword: Internet-Draft
+updates: 6125
 
 stand_alone: yes
 smart_quotes: no
@@ -19,49 +20,67 @@ author:
     organization: Akamai Technologies
     email: rsalz@akamai.com
 
-normative:
-  RFC2119:
-  RFC6125:
-
 informative:
+  CABBR:
+    target: https://cabforum.org/wp-content/uploads/CA-Browser-Forum-BR-1.7.3.pdf
+    title: >
+      Baseline Requirements for the Issuance and Management of
+      Publicly-Trusted Certificates
+    author:
+      org: CA/Browser Forum
+    date: 2020
+    format:
+      PDF: https://cabforum.org/wp-content/uploads/CA-Browser-Forum-BR-1.7.3.pdf
 
 --- abstract
 
-In the decade since {{!RFC6125}} was published, the subjectAltName
-extension, as defined in {{!RFC5280}} has become ubiquitous.  This document
-updates {{!RFC6125}} to specify that the fall-back techniques of
-using commonName attribute to identify the service MUST NOT be used.
+In the decade since {{!RFC6125}} was published, the subjectAlternativeName
+extension (SAN), as defined in {{!RFC5280}} has become ubiquitous.  This
+document updates {{!RFC6125}} to specify that the fall-back techniques of
+using the commonName attribute to identify the service must not be used.
+This document also places some limitations on the use of wildcards in SAN
+fields.
+
+The original context of {{!RFC6125}}, using X.509 certificates for server
+identity with Transport Layer Security (TLS), is not changed.
 
 --- middle
 
 # Introduction
 
-In the decade since {{!RFC6125}} was published, the subjectAltName
-extension, as defined in {{!RFC5280}} has become ubiquitous.  This document
-updates {{!RFC6125}} to specify that the fall-back techniques of
-using commonName attribute to identify the service MUST NOT be used.
+In the decade since {{!RFC6125}} was published, the subjectAlternativeName
+extension (SAN), as defined in {{!RFC5280}} has become ubiquitous.  This
+document updates {{!RFC6125}} to specify that the fall-back techniques of
+using the commonName attribute to identify the service must not be used.
+This document also places some limitations on the use of wildcards in SAN
+fields.
+
+The original context of {{!RFC6125}}, using X.509 certificates for server
+identity with Transport Layer Security (TLS), is not changed.
+In addition to the examples in that document,
+the Baseline Requirements of the CA/Browser Forum, [CABBR],
+might also be useful.
 
 # Conventions and Definitions
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this
-document are to be interpreted as described in BCP 14 {{RFC2119}} {{!RFC8174}}
+document are to be interpreted as described in BCP 14 {{!RFC2119}} {{!RFC8174}}
 when, and only when, they appear in all capitals, as shown here.
 
 The terminology from {{!RFC6125}} is used here.
 Specifically, the following terms and brief definition (as a reminder):
 
-- CN-ID: the Common Name element from a Distingiushed Name.
+- CN-ID: the Common Name element of a Distingiushed Name.
 
-- DNS-ID, SRV-ID, URI-ID: different types of entries in a subjectAltName
-extension.
+- DNS-ID: a domain name entry in a SAN extension.
 
 # The New Rules
 
-The CN-ID MUST NOT be used. The appropriate value in the subjectAltName
+The CN-ID MUST NOT be used. The appropriate value in the SAN
 extension MUST be used to get the presented identity of the server.
 
-While not discussed in {{!RFC6125}}, this section also implicitly prohibits
+While not discussed in {{!RFC6125}} this section also implicitly prohibits
 the use of the Domain Component or emailAddress RDN's.
 
 The following sections repeat the above rule in other forms, for the purpose
@@ -70,7 +89,7 @@ of updating {{!RFC6125}}.
 ## Designing Application Protocols
 
 Applications should determine which form of name they want to use, and
-specify the appropriate subjectAltName extension. Unless there are reasons
+specify the appropriate SAN extension. Unless there are reasons
 to do otherwise, applications SHOULD use the DNS-ID form.
 
 ## Representing Server Identity
@@ -116,8 +135,3 @@ documents are still relevant.
 This document has no IANA actions.
 
 --- back
-
-# Acknowledgments
-{:numbered="false"}
-
-TODO acknowledge.

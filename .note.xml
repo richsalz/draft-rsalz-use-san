@@ -1,4 +1,6 @@
 <note title="Discussion Venues" removeInRFC="true">
+  <t>This draft is discussed in the UTA working group,
+  <eref target="https://datatracker.ietf.org/wg/uta/"/>.</t>
 <t>Source for this draft and an issue tracker can be found at
   <eref target="https://github.com/richsalz/draft-rsalz-use-san"/>.</t>
 </note>
