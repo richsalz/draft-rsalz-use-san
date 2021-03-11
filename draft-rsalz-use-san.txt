@@ -15,14 +15,14 @@ Expires: 12 September 2021
 Abstract
 
    In the decade since [RFC6125] was published, the
-   subjectAlternativeName extension, as defined in [RFC5280] has become
-   ubiquitous.  This document updates [RFC6125] to specify that the
-   fall-back techniques of using the commonName attribute to identify
-   the service must not be used.  This document also places some
-   limitations on the use of wildcards in subjectAlternativeName fields.
+   subjectAlternativeName extension (SAN), as defined in [RFC5280] has
+   become ubiquitous.  This document updates [RFC6125] to specify that
+   the fall-back techniques of using the commonName attribute to
+   identify the service must not be used.  This document also places
+   some limitations on the use of wildcards in SAN fields.
 
-   Note that the original context, using X.509 certificates for server
-   identity with Transport Layer Security (TLS) has not changed.
+   The original context of [RFC6125], using X.509 certificates for
+   server identity with Transport Layer Security (TLS), is not changed.
 
 Discussion Venues
 
@@ -90,10 +90,10 @@ Table of Contents
    the service MUST NOT be used.  This document also places some
    limitations on the use of wildcards in subjectAlternativeName fields.
 
-   Note that the original context, using X.509 certificates for server
-   identity with Transport Layer Security (TLS) has not changed.  In
-   addition to the examples in [RFC6125], the Baseline Requirements of
-   the CA/Browser Forum, [CABBR], might also be useflu.
+   The original context of [RFC6125], using X.509 certificates for
+   server identity with Transport Layer Security (TLS), is not changed.
+   In addition to the examples in that document, the Baseline
+   Requirements of the CA/Browser Forum, [CABBR], might also be useful.
 
 2.  Conventions and Definitions
 
