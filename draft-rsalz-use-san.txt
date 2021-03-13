@@ -4,9 +4,9 @@
 
 UTA                                                              R. Salz
 Internet-Draft                                       Akamai Technologies
-Updates: 6125 (if approved)                                11 March 2021
+Updates: 6125 (if approved)                                13 March 2021
 Intended status: Standards Track                                        
-Expires: 12 September 2021
+Expires: 14 September 2021
 
 
    Update to Verifying TLS Server Identities with X.509 Certificates
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 September 2021.
+   This Internet-Draft will expire on 14 September 2021.
 
 Copyright Notice
 
@@ -84,11 +84,11 @@ Table of Contents
 1.  Introduction
 
    In the decade since [RFC6125] was published, the
-   subjectAlternativeName extension, as defined in [RFC5280] has become
-   ubiquitous.  This document updates [RFC6125] to specify that the
-   fall-back techniques of using the commonName attribute to identify
-   the service MUST NOT be used.  This document also places some
-   limitations on the use of wildcards in subjectAlternativeName fields.
+   subjectAlternativeName extension (SAN), as defined in [RFC5280] has
+   become ubiquitous.  This document updates [RFC6125] to specify that
+   the fall-back techniques of using the commonName attribute to
+   identify the service must not be used.  This document also places
+   some limitations on the use of wildcards in SAN fields.
 
    The original context of [RFC6125], using X.509 certificates for
    server identity with Transport Layer Security (TLS), is not changed.
@@ -106,16 +106,14 @@ Table of Contents
    The terminology from [RFC6125] is used here.  Specifically, the
    following terms and brief definition (as a reminder):
 
-   *  CN-ID: the Common Name element from a Distingiushed Name.
+   *  CN-ID: the Common Name element of a Distingiushed Name.
 
-   *  DNS-ID, SRV-ID, URI-ID: different types of entries in a
-      subjectAlternativeName extension.
+   *  DNS-ID: a domain name entry in a SAN extension.
 
 3.  The New Rules
 
-   The CN-ID MUST NOT be used.  The appropriate value in the
-   subjectAlternativeName extension MUST be used to get the presented
-   identity of the server.
+   The CN-ID MUST NOT be used.  The appropriate value in the SAN
+   extension MUST be used to get the presented identity of the server.
 
    While not discussed in [RFC6125] this section also implicitly
    prohibits the use of the Domain Component or emailAddress RDN's.
@@ -126,9 +124,8 @@ Table of Contents
 3.1.  Designing Application Protocols
 
    Applications should determine which form of name they want to use,
-   and specify the appropriate subjectAlternativeName extension.  Unless
-   there are reasons to do otherwise, applications SHOULD use the DNS-ID
-   form.
+   and specify the appropriate SAN extension.  Unless there are reasons
+   to do otherwise, applications SHOULD use the DNS-ID form.
 
 3.2.  Representing Server Identity
 
