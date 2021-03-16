@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-03-14T00:43:27.430678+00:00",
+  "timestamp": "2021-03-16T00:40:36.246230+00:00",
   "repo": "richsalz/draft-rsalz-use-san",
   "labels": [
     {
@@ -49,6 +49,23 @@
       "color": "ffffff"
     }
   ],
-  "issues": [],
+  "issues": [
+    {
+      "number": 1,
+      "id": "MDU6SXNzdWU4MzIwMzUwNjM=",
+      "title": "limit scope of use",
+      "url": "https://github.com/richsalz/draft-rsalz-use-san/issues/1",
+      "state": "OPEN",
+      "author": "richsalz",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Thanks, Rich.  My recommendation is to state the architectural principle, much as you already you, but then to split up the recommendations, perhaps along the following lines:\r\n\r\n- Applications that make use of domain names and maybe ip addresses in certificates\r\n- Others\r\n\r\nI *think* that is the right split (Victor got me thinking along these lines).  For the former, we don\u2019t have to be too polite about those not using SANs: it\u2019s well past time.  For the latter, I would couch the language just a bit, because there are likely to be non-IETF use cases tracking your work.\r\n\r\nSo something like: \"those producing certificates that do not contain domain names MUST use a SAN.  Those validating certificates not using domain names MAY reject certificates that do not contain a SAN, based on intended use case, length of certificates in play, and other specific application knowledge.\"\r\n\r\nThat probably needs a WHOLE lot of word smithing, but it gives fair warning to the industry that unstructured subjects are naughty.\r\n\r\nI would still liaise this stuff to the IEEE.\r\n\r\nEliot\r\n\r\n\r\n\r\nOn 15 Mar 2021, at 16:14, Salz, Rich <rsalz=40akamai.com@dmarc.ietf.org> wrote:\r\n\r\n  I\u2019m quite certain this is NOT what Rich had in mind when he was writing the document, and thus my suggestions.\r\n\r\nThere are more things in heaven and earth, Horatio, than are covered by your draft :)\r\n\r\nHappy to add some wording if anyone has suggestions.\r\n\r\n",
+      "createdAt": "2021-03-15T17:30:32Z",
+      "updatedAt": "2021-03-15T17:46:32Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
   "pulls": []
 }
