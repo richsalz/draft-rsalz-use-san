@@ -1,6 +1,6 @@
 ---
 title: "Update to Verifying TLS Server Identities with X.509 Certificates"
-docname: draft-rsalz-use-san-latest
+docname: draft-ietf-uta-use-san-latest
 category: std
 
 ipr: trust200902
@@ -13,11 +13,14 @@ stand_alone: yes
 smart_quotes: no
 pi: [toc, sortrefs, symrefs]
 
+keyword: [certificate, TLS, PKIX, X.509]
+
 author:
  -
     ins: R. Salz
     name: Rich Salz
     organization: Akamai Technologies
+    country: US
     email: rsalz@akamai.com
 
 informative:
@@ -36,26 +39,26 @@ informative:
 
 In the decade since {{!RFC6125}} was published, the subjectAlternativeName
 extension (SAN), as defined in {{!RFC5280}} has become ubiquitous.  This
-document updates {{!RFC6125}} to specify that the fall-back techniques of
+document updates [RFC6125] to specify that the fall-back techniques of
 using the commonName attribute to identify the service must not be used.
 This document also places some limitations on the use of wildcards in SAN
 fields.
 
-The original context of {{!RFC6125}}, using X.509 certificates for server
+The original context of [RFC6125] using X.509 certificates for server
 identity with Transport Layer Security (TLS), is not changed.
 
 --- middle
 
 # Introduction
 
-In the decade since {{!RFC6125}} was published, the subjectAlternativeName
-extension (SAN), as defined in {{!RFC5280}} has become ubiquitous.  This
-document updates {{!RFC6125}} to specify that the fall-back techniques of
+In the decade since [RFC6125] was published, the subjectAlternativeName
+extension (SAN), as defined in [RFC5280] has become ubiquitous.  This
+document updates [RFC6125] to specify that the fall-back techniques of
 using the commonName attribute to identify the service must not be used.
 This document also places some limitations on the use of wildcards in SAN
 fields.
 
-The original context of {{!RFC6125}}, using X.509 certificates for server
+The original context of [RFC6125] using X.509 certificates for server
 identity with Transport Layer Security (TLS), is not changed.
 In addition to the examples in that document,
 the Baseline Requirements of the CA/Browser Forum, [CABBR],
@@ -68,7 +71,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 document are to be interpreted as described in BCP 14 {{!RFC2119}} {{!RFC8174}}
 when, and only when, they appear in all capitals, as shown here.
 
-The terminology from {{!RFC6125}} is used here.
+The terminology from [RFC6125] is used here.
 Specifically, the following terms and brief definition (as a reminder):
 
 - CN-ID: the Common Name element of a Distingiushed Name.
@@ -80,11 +83,11 @@ Specifically, the following terms and brief definition (as a reminder):
 The CN-ID MUST NOT be used. The appropriate value in the SAN
 extension MUST be used to get the presented identity of the server.
 
-While not discussed in {{!RFC6125}} this section also implicitly prohibits
+While not discussed in [RFC6125] this section also implicitly prohibits
 the use of the Domain Component or emailAddress RDN's.
 
 The following sections repeat the above rule in other forms, for the purpose
-of updating {{!RFC6125}}.
+of updating [RFC6125]
 
 ## Designing Application Protocols
 
@@ -102,11 +105,11 @@ form that cannot be mistaken for a CN-ID.
 
 When constructing a list of reference identifiers, the client MUST NOT
 include any CN-ID present in the certificate. This means that section
-6.4.4 of {{!RFC6125}} MUST be ignored.
+6.4.4 of [RFC6125] MUST be ignored.
 
 # Constraints on Wildcards
 
-Wildcard certificates are discussed in section 7.2 of {{!RFC6125}}, which
+Wildcard certificates are discussed in section 7.2 of [RFC6125] which
 says that the specifications "are not clear or consistent" about where a
 wildcard can appear.
 
@@ -114,6 +117,9 @@ This documents specifies that a wildcard can appear
 
 - only as the left-most label; or
 - as the last character in a left-most label
+
+Clients that receive a DNS-ID that does not meet these criteria SHOULD
+ignore it.
 
 # Security Considerations
 
@@ -123,11 +129,11 @@ In addition, their evaluation when PKIX nameConstraints are present is
 ambiguous. This document removes those fields from use, so a source
 of possible errors is removed.
 
-Because of the ambiguity around wildcards, {{!RFC6125}} mentions that it
+Because of the ambiguity around wildcards, [RFC6125] mentions that it
 is possible to have exploitable differences in behavior. By simplifying
 those practices to one rule, this source of errors should be avoided.
 
-All other security considerations of {{!RFC6125}} and its dependant
+All other security considerations of [RFC6125] and its dependant
 documents are still relevant.
 
 # IANA Considerations
