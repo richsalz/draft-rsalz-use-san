@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-06-08T01:17:07.276637+00:00",
+  "timestamp": "2021-06-10T00:55:25.282654+00:00",
   "repo": "richsalz/draft-rsalz-use-san",
   "labels": [
     {
@@ -63,6 +63,22 @@
       "body": "Thanks, Rich.  My recommendation is to state the architectural principle, much as you already you, but then to split up the recommendations, perhaps along the following lines:\r\n\r\n- Applications that make use of domain names and maybe ip addresses in certificates\r\n- Others\r\n\r\nI *think* that is the right split (Victor got me thinking along these lines).  For the former, we don\u2019t have to be too polite about those not using SANs: it\u2019s well past time.  For the latter, I would couch the language just a bit, because there are likely to be non-IETF use cases tracking your work.\r\n\r\nSo something like: \"those producing certificates that do not contain domain names MUST use a SAN.  Those validating certificates not using domain names MAY reject certificates that do not contain a SAN, based on intended use case, length of certificates in play, and other specific application knowledge.\"\r\n\r\nThat probably needs a WHOLE lot of word smithing, but it gives fair warning to the industry that unstructured subjects are naughty.\r\n\r\nI would still liaise this stuff to the IEEE.\r\n\r\nEliot\r\n\r\n\r\n\r\nOn 15 Mar 2021, at 16:14, Salz, Rich <rsalz=40akamai.com@dmarc.ietf.org> wrote:\r\n\r\n  I\u2019m quite certain this is NOT what Rich had in mind when he was writing the document, and thus my suggestions.\r\n\r\nThere are more things in heaven and earth, Horatio, than are covered by your draft :)\r\n\r\nHappy to add some wording if anyone has suggestions.\r\n\r\n",
       "createdAt": "2021-03-15T17:30:32Z",
       "updatedAt": "2021-03-15T17:46:32Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 2,
+      "id": "MDU6SXNzdWU5MTYyMTYxMDQ=",
+      "title": "Clearification of subject CN usage",
+      "url": "https://github.com/richsalz/draft-rsalz-use-san/issues/2",
+      "state": "OPEN",
+      "author": "georg-x",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "I consider this a reasonable RFC, but I'd like to get some things cleared up.\r\nMy concerns may just be because of not beeing an English native speaker.\r\n```\r\n3.  The New Rules\r\n   The CN-ID MUST NOT be used.  The appropriate value in the SAN\r\n   extension MUST be used to get the presented identity of the server.\r\n```\r\nI would understand that, the CN-ID must not be used to identify a server or client. But it wouldn't hurt, if the CN-ID is present in a certificate? There will be no fallback meachanism to CN-ID and only values in SAN extension will work.\r\n\r\n```\r\n3.2.  Representing Server Identity\r\n   Servers MUST NOT request certificates that contain CN-ID in the\r\n   subject.  If the Common Name RDN must be present in the certificate,\r\n   it MUST be in a form that cannot be mistaken for a CN-ID.\r\n```\r\nWhy is  that? Currently we use Subject CN-ID to see where the certificate belongs on first sight. (e.g. you can even show that easily to a customer via Windows crypto extension).\r\nI guess, just disallowing fallback to SAN would make things easier for everyone. But disallowing filling CN-ID at all will make things complicated.\r\n",
+      "createdAt": "2021-06-09T13:41:18Z",
+      "updatedAt": "2021-06-09T13:41:18Z",
       "closedAt": null,
       "comments": []
     }
