@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-06-17T00:47:59.871321+00:00",
+  "timestamp": "2021-06-20T00:52:03.332103+00:00",
   "repo": "richsalz/draft-rsalz-use-san",
   "labels": [
     {
@@ -78,9 +78,24 @@
       "labels": [],
       "body": "I consider this a reasonable RFC, but I'd like to get some things cleared up.\r\nMy concerns may just be because of not beeing an English native speaker.\r\n```\r\n3.  The New Rules\r\n   The CN-ID MUST NOT be used.  The appropriate value in the SAN\r\n   extension MUST be used to get the presented identity of the server.\r\n```\r\nI would understand that, the CN-ID must not be used to identify a server or client. But it wouldn't hurt, if the CN-ID is present in a certificate? There will be no fallback meachanism to CN-ID and only values in SAN extension will work.\r\n\r\n```\r\n3.2.  Representing Server Identity\r\n   Servers MUST NOT request certificates that contain CN-ID in the\r\n   subject.  If the Common Name RDN must be present in the certificate,\r\n   it MUST be in a form that cannot be mistaken for a CN-ID.\r\n```\r\nWhy is  that? Currently we use Subject CN-ID to see where the certificate belongs on first sight. (e.g. you can even show that easily to a customer via Windows crypto extension).\r\nI guess, just disallowing fallback to SAN would make things easier for everyone. But disallowing filling CN-ID at all will make things complicated.\r\n",
       "createdAt": "2021-06-09T13:41:18Z",
-      "updatedAt": "2021-06-09T13:41:18Z",
+      "updatedAt": "2021-06-18T14:06:29Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "sleevi",
+          "authorAssociation": "NONE",
+          "body": "(I didn't see this point addressed on https://mailarchive.ietf.org/arch/browse/uta/ and didn't see if the WorkMode for this requests all discussion on list, so apologies if it's more appropriate there, and I can try to reflect this feedback there)\r\n\r\n> There will be no fallback meachanism to CN-ID and only values in SAN extension will work.\r\n\r\nI can't speak for @richsalz here, but that seems a desirable outcome here, because the fallback to CN-ID is underspecified (e.g. the application of DNS-ID nameConstraints to the CN-ID) and, as a result, insecure. So the proposed language ensures that the failure mode here is to \"fail closed if you don't understand SAN\", which is an argument for security, and similar to other IETF documents that use PKI (e.g. RFC 6487 is a great example of this)\r\n\r\n> Why is that?\r\n\r\nThe \"cannot be confused for DNS\" requirement basically mitigates the above risk, by ensuring systems that don't understand SANs do not mistakenly use the CN-ID. Ideally, it would disallow CN-ID entirely, since the DN is only there to support integration with X.500 / \"The Directory\", and RFC 5280's [stated goals](https://datatracker.ietf.org/doc/html/rfc5280#section-2.2) are:\r\n\r\n```text\r\n   The goal of the Internet Public Key Infrastructure (PKI) is to meet\r\n   the needs of deterministic, automated identification, authentication,\r\n   access control, and authorization functions.\r\n```\r\n\r\nAnd filling the CN-ID undermines that. But I suspect this was meant as a compromise versus an outright prohibition on CN-ID.",
+          "createdAt": "2021-06-18T14:01:46Z",
+          "updatedAt": "2021-06-18T14:01:46Z"
+        },
+        {
+          "author": "richsalz",
+          "authorAssociation": "OWNER",
+          "body": "@sleevi can't speak for me, but he has more experience in this area than almost anyone, and as an IETF participant he can comment, propose changes, etc.\r\n\r\nHis reasoning strikes me as exactly right.\r\n\r\nI think UTA is still bound to all mailing list traffic.",
+          "createdAt": "2021-06-18T14:06:29Z",
+          "updatedAt": "2021-06-18T14:06:29Z"
+        }
+      ]
     }
   ],
   "pulls": []
