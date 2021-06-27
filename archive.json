@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-06-24T00:38:52.557140+00:00",
+  "timestamp": "2021-06-27T00:55:45.323165+00:00",
   "repo": "richsalz/draft-rsalz-use-san",
   "labels": [
     {
@@ -78,7 +78,7 @@
       "labels": [],
       "body": "I consider this a reasonable RFC, but I'd like to get some things cleared up.\r\nMy concerns may just be because of not beeing an English native speaker.\r\n```\r\n3.  The New Rules\r\n   The CN-ID MUST NOT be used.  The appropriate value in the SAN\r\n   extension MUST be used to get the presented identity of the server.\r\n```\r\nI would understand that, the CN-ID must not be used to identify a server or client. But it wouldn't hurt, if the CN-ID is present in a certificate? There will be no fallback meachanism to CN-ID and only values in SAN extension will work.\r\n\r\n```\r\n3.2.  Representing Server Identity\r\n   Servers MUST NOT request certificates that contain CN-ID in the\r\n   subject.  If the Common Name RDN must be present in the certificate,\r\n   it MUST be in a form that cannot be mistaken for a CN-ID.\r\n```\r\nWhy is  that? Currently we use Subject CN-ID to see where the certificate belongs on first sight. (e.g. you can even show that easily to a customer via Windows crypto extension).\r\nI guess, just disallowing fallback to SAN would make things easier for everyone. But disallowing filling CN-ID at all will make things complicated.\r\n",
       "createdAt": "2021-06-09T13:41:18Z",
-      "updatedAt": "2021-06-18T14:06:29Z",
+      "updatedAt": "2021-06-24T10:23:21Z",
       "closedAt": null,
       "comments": [
         {
@@ -94,6 +94,13 @@
           "body": "@sleevi can't speak for me, but he has more experience in this area than almost anyone, and as an IETF participant he can comment, propose changes, etc.\r\n\r\nHis reasoning strikes me as exactly right.\r\n\r\nI think UTA is still bound to all mailing list traffic.",
           "createdAt": "2021-06-18T14:06:29Z",
           "updatedAt": "2021-06-18T14:06:29Z"
+        },
+        {
+          "author": "georg-x",
+          "authorAssociation": "NONE",
+          "body": "Thank you for your respones!\r\nI think I get it. So, for easy identification in e.g. Windows crypot extension, CN-ID could be set to some value like \"SAN:xxx.example.com\" which is not in DNS, and clearly cannot get confused with DNS...\r\nI guess, there will be a rather long time where the new RFC is not enforced. There are really many legacy systems out there, that still will set CN-ID as a DNS Name...",
+          "createdAt": "2021-06-24T10:23:21Z",
+          "updatedAt": "2021-06-24T10:23:21Z"
         }
       ]
     }
